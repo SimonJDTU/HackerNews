@@ -3,7 +3,7 @@ import {
   fetchTopStoryItems,
   fetchUserInfo,
 } from './HackerNewsApi';
-import {displayObject, hackerAuthor, hackerStory} from './types';
+import {hackerAuthor, hackerStory} from './types';
 
 const MAX_ITEM_FETCH = 10;
 
@@ -13,10 +13,10 @@ export const fetchRandomHackerNews = async () => {
   // fetch all top stories and select 10 at random
   const idArray: Array<number> | void = await fetchTopStoryItems().then(
     data => {
-      return selectRandomFromArray(data as Array<number>);
+      return selectRandomFromArray(data as Array<number>, MAX_ITEM_FETCH);
     },
     _ => {
-      //Inform user of error
+      console.log('error hit!');
     },
   );
 
@@ -52,9 +52,12 @@ export const fetchRandomHackerNews = async () => {
   return displayArray;
 };
 
-const selectRandomFromArray = (idArray: Array<number>): Array<number> => {
+const selectRandomFromArray = (
+  idArray: Array<number>,
+  amount: number,
+): Array<number> => {
   var randomIDArray: Array<number> = [];
-  for (let i = 0; i < MAX_ITEM_FETCH; i++) {
+  for (let i = 0; i < amount; i++) {
     const selectIndex = Math.floor(Math.random() * idArray.length);
     const selectObject = idArray[selectIndex];
     if (selectIndex > -1) {

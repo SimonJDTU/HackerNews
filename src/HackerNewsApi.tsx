@@ -1,5 +1,3 @@
-import {displayObject} from './types';
-
 export const fetchTopStoryItems = () => {
   return fetch('https://hacker-news.firebaseio.com/v0/topstories.json')
     .then(response => {

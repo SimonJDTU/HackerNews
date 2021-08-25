@@ -12,7 +12,3 @@ export type hackerStory = {
   score: number;
   karma: number;
 };
-
-export type displayObject = {
-  item: hackerStory;
-};
