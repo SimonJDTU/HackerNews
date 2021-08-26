@@ -16,6 +16,8 @@ const App = () => {
     fetchRandomHackerNews().then(hackerNews => {
       if (hackerNews !== null) {
         setData(hackerNews);
+      } else {
+        // inform user
       }
     });
   };
